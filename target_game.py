@@ -1,12 +1,23 @@
+from functools import reduce
 from typing import List
+import string
+import random
 
 def generate_grid() -> List[List[str]]:
     """
     Generates list of lists of letters - i.e. grid for the game.
     e.g. [['I', 'G', 'E'], ['P', 'I', 'S'], ['W', 'M', 'G']]
     """
-    pass
-
+    grid = []
+    letters = string.ascii_uppercase
+    for _ in range(3):
+        row = []
+        for _ in range(3):
+            letter = random.choice(letters)
+            row.append(letter)
+            letters = letters.replace(letter, "")
+        grid.append(row)
+    return(grid)
 
 def get_words(f: str, letters: List[str]) -> List[str]:
     """
@@ -53,4 +64,4 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
 def results():
     pass
 
-print(get_words("en.txt", ['s', 'v', 'e', 't', 'a']))
+print(generate_grid())
