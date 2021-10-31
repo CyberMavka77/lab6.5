@@ -12,16 +12,32 @@ def get_words(f: str, letters: List[str]) -> List[str]:
     """
     Reads the file f. Checks the words with rules and returns a list of words.
     """
-    pass
-
-
+    with open(f, 'r') as output_file:
+        all_of_it = output_file.read()
+    all_words = list(all_of_it.split('\n'))
+    pure_words = []
+    for word in all_words:
+        flag = True
+        for letter in word.lower():
+            if letter not in letters:
+                flag = False
+        if flag and len(word) >= 4:
+            pure_words.append(word.lower())
+    return list(set(pure_words))
 
 def get_user_words() -> List[str]:
     """
     Gets words from user input and returns a list with these words.
     Usage: enter a word or press ctrl+d to finish.
     """
-    pass
+    user_words = []
+    end_trigg = True
+    while end_trigg:
+        try:
+            user_words.append(input())
+        except EOFError:
+            end_trigg = False
+    return user_words
 
 
 def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
@@ -36,3 +52,5 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
 
 def results():
     pass
+
+print(get_words("en.txt", ['s', 'v', 'e', 't', 'a']))
