@@ -1,6 +1,3 @@
-Wordlists
-#en: English
-#
 a
 aa
 aal

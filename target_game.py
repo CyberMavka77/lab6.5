@@ -18,7 +18,7 @@ def generate_grid() -> List[List[str]]:
             letter = choice(letters)
             row.append(letter)
         grid.append(row)
-    return(grid)
+    return grid
 
 def get_pure_words(all_words, letters) -> List[str]:
     """
@@ -40,11 +40,11 @@ def get_pure_words(all_words, letters) -> List[str]:
             pure_words.append(word.lower())
     return list(set(pure_words))
 
-def get_words(f: str, letters: List[str]) -> List[str]:
+def get_words(file_path: str, letters: List[str]) -> List[str]:
     """
-    Reads the file f. Checks the words with rules and returns a list of words.
+    Reads the file file_path. Checks the words with rules and returns a list of words.
     """
-    with open(f, 'r') as output_file:
+    with open(file_path, 'r') as output_file:
         all_of_it = output_file.read()
     all_words = list(all_of_it.split('\n'))
     return get_pure_words(all_words, letters)
@@ -64,7 +64,8 @@ def get_user_words() -> List[str]:
     return user_words
 
 
-def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
+def get_pure_user_words(user_words: List[str],
+letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
     (list, list, list) -> list
 
@@ -78,6 +79,9 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
     return pure_user_words
 
 def get_all_missed_words(user_words, dict_words):
+    """
+    Gets all missed by user words
+    """
     result_words = []
     for item in dict_words:
         if item not in user_words:
