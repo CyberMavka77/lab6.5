@@ -64,8 +64,7 @@ def get_user_words() -> List[str]:
     return user_words
 
 
-def get_pure_user_words(user_words: List[str],
-letters: List[str], words_from_dict: List[str]) -> List[str]:
+def get_pure_user_words(user_words: List[str], letters: List[str], words_from_dict: List[str]) -> List[str]:
     """
     (list, list, list) -> list
 
