@@ -15,7 +15,6 @@ def generate_grid() -> List[List[str]]:
         for _ in range(3):
             letter = random.choice(letters)
             row.append(letter)
-            letters = letters.replace(letter, "")
         grid.append(row)
     return(grid)
 
@@ -32,9 +31,15 @@ def get_words(f: str, letters: List[str]) -> List[str]:
         for letter in word.lower():
             if letter not in letters:
                 flag = False
-        if flag and len(word) >= 4:
+        lower_word = word.lower()
+        for letter in letters:
+            count = letters.count(letter)
+            word_count = lower_word.count(letter)
+            if word_count > count:
+                flag = False
+        if flag and len(word) >= 4 and letters[4] in word:
             pure_words.append(word.lower())
-    return list(set(pure_words))
+    return sorted(list(set(pure_words)))
 
 def get_user_words() -> List[str]:
     """
@@ -64,4 +69,5 @@ def get_pure_user_words(user_words: List[str], letters: List[str], words_from_di
 def results():
     pass
 
-print(generate_grid())
+
+print(get_words('en.txt', ['a', 'd', 'r', 'o', 'i', 't']))
